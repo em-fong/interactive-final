@@ -34,13 +34,13 @@ function setup() {
 
 
   fixedStars = new Pin("Exhibition", "red", 615, 240, "https://dl.airtable.com/hRZcWj7RL6Sz79pJ4aYe_full_a055d014-f89f-4900-b570-3effe9b7c0ac.png", "Book on the Shapes of the Fixed Stars (Kitab suwar al-kawakib al-thabita) The Constellation of Corvus the Raven", "Author: Abd al-Rahman ibn Umar Sufi (903-986) Copyist: Unknown", "Language: Arabic", "Dimensions: Folio: H. 20 cm; W. 14.6 cm", "Medium: Ink, opaque watercolor, and gold on paper", "Origin: Iran", "16th Century", "", "", "", 4);
-  
+
 
   kinik = new Pin("Excavation", "green", 565, 225, "https://dl.airtable.com/nx3l3h8eRoGaxPMUwnPx_full_kinik2_1024.jpg", "Kinik Hoyuk", "", "", "", "", "Origin: Nigde, Turkey", "9th Century BCE", "8th Century BCE", "http://www.kinikhoyuk.org/", "Project Leader: Lorenzo d'Alfonso", 3);
- 
+
 
   amheida = new Pin("Excavation", "green", 560, 260, "https://dl.airtable.com/yU1gNdZuT9aLFzdAslOA_full_home2.jpg", "NYU Excavations at Amheida", "", "", "", "", "Origin: Dakhleh Oasis, Egypt", "1st Century AD", "4th Century AD",  "http://www.kinikhoyuk.org/", "Project Leader: Roger Bagnall", 6)
- 
+
 
   mechanism = new Pin("Research", "blue", 535, 230, "https://dl.airtable.com/yWJaGWWjQXKpHlBGLsEg_full_NAMA_Machine_d'Anticyth%C3%A8re_1.jpg", "Antikythera Mechanism", "", "", "", "", "Origin: Antikythera, Greece", "1st Century BCE", "2nd Century BCE", "http://isaw.nyu.edu/research/antikythera-mechanism", "Project Leader: Alexander Jones", 2);
 
@@ -69,7 +69,7 @@ function setup() {
           else{
             s.show = true;
             console.log('showing', s.show);
-  
+
             if(s.age > max){max = s.age};
             console.log('object id: ' + s.age);
 
@@ -90,7 +90,7 @@ function draw() {
   image(bckgrnd, 500, 250, 1000, 500);
 
 
- 
+
   store.forEach((s) =>{
     if(s.age <= parseInt(slide.value)){
       s.show = true;
@@ -104,7 +104,7 @@ function draw() {
 
 
 
- 
+
 
 
 
@@ -115,9 +115,9 @@ function draw() {
 }
 
 function mousePressed() {
-  if (mouseX > 545 && mouseX < 565 && mouseY > 190 && mouseY < 280) {
-    test.displayInfo();
-  }
+//  if (mouseX > 545 && mouseX < 565 && mouseY > 190 && mouseY < 280) {
+//    test.displayInfo();
+//  }
 
   if (mouseX > 530 && mouseX < 555 && mouseY > 190 && mouseY < 280) {
     alex.displayInfo();
