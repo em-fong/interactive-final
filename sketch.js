@@ -1,4 +1,7 @@
+//background image
 var bckgrnd;
+
+//pin objects
 var alex;
 var fixedStars;
 var kinik;
@@ -6,10 +9,16 @@ var amheida;
 var mechanism;
 var pub;
 var test;
+
+//array that stores all the pin objects
 var store = []
 
+//html interface
 var btns;
 var slide;
+
+// global variable to keep track of the current button value
+var buttonValue = "";
 
 function preload() {
   bckgrnd = loadImage("assets/map.jpg");
@@ -29,23 +38,23 @@ function setup() {
   slide = document.getElementById('slide');
 
 
-
+  //create pins — sorry for the nuts constructor
   alex = new Pin("Exhibition", "red", 545, 260, "https://dl.airtable.com/r6avmEATCG5CKIEgmGeK_c308e18b-9996-4278-ba7e-dc93f4c7b380.png", "Alexander the Great", "", "", "Dimensions: H. 8.9 cm; W. 5.1 cm; D. 3.8 cm", "Medium: Marble", "Origin: Africa(?)", "100BCE", "100CE", "", "", 1);
 
 
-  fixedStars = new Pin("Exhibition", "red", 615, 240, "https://dl.airtable.com/hRZcWj7RL6Sz79pJ4aYe_full_a055d014-f89f-4900-b570-3effe9b7c0ac.png", "Book on the Shapes of the Fixed Stars (Kitab suwar al-kawakib al-thabita) The Constellation of Corvus the Raven", "Author: Abd al-Rahman ibn Umar Sufi (903-986) Copyist: Unknown", "Language: Arabic", "Dimensions: Folio: H. 20 cm; W. 14.6 cm", "Medium: Ink, opaque watercolor, and gold on paper", "Origin: Iran", "16th Century", "", "", "", 4);
+  fixedStars = new Pin("Exhibitions", "red", 615, 240, "https://dl.airtable.com/hRZcWj7RL6Sz79pJ4aYe_full_a055d014-f89f-4900-b570-3effe9b7c0ac.png", "Book on the Shapes of the Fixed Stars (Kitab suwar al-kawakib al-thabita) The Constellation of Corvus the Raven", "Author: Abd al-Rahman ibn Umar Sufi (903-986) Copyist: Unknown", "Language: Arabic", "Dimensions: Folio: H. 20 cm; W. 14.6 cm", "Medium: Ink, opaque watercolor, and gold on paper", "Origin: Iran", "16th Century", "", "", "", 4);
 
 
-  kinik = new Pin("Excavation", "green", 565, 225, "https://dl.airtable.com/nx3l3h8eRoGaxPMUwnPx_full_kinik2_1024.jpg", "Kinik Hoyuk", "", "", "", "", "Origin: Nigde, Turkey", "9th Century BCE", "8th Century BCE", "http://www.kinikhoyuk.org/", "Project Leader: Lorenzo d'Alfonso", 3);
+  kinik = new Pin("Excavations", "green", 565, 225, "https://dl.airtable.com/nx3l3h8eRoGaxPMUwnPx_full_kinik2_1024.jpg", "Kinik Hoyuk", "", "", "", "", "Origin: Nigde, Turkey", "9th Century BCE", "8th Century BCE", "http://www.kinikhoyuk.org/", "Project Leader: Lorenzo d'Alfonso", 3);
 
 
-  amheida = new Pin("Excavation", "green", 560, 260, "https://dl.airtable.com/yU1gNdZuT9aLFzdAslOA_full_home2.jpg", "NYU Excavations at Amheida", "", "", "", "", "Origin: Dakhleh Oasis, Egypt", "1st Century AD", "4th Century AD",  "http://www.kinikhoyuk.org/", "Project Leader: Roger Bagnall", 6)
+  amheida = new Pin("Excavations", "green", 560, 260, "https://dl.airtable.com/yU1gNdZuT9aLFzdAslOA_full_home2.jpg", "NYU Excavations at Amheida", "", "", "", "", "Origin: Dakhleh Oasis, Egypt", "1st Century AD", "4th Century AD",  "http://www.kinikhoyuk.org/", "Project Leader: Roger Bagnall", 6)
 
 
-  mechanism = new Pin("Research", "blue", 535, 230, "https://dl.airtable.com/yWJaGWWjQXKpHlBGLsEg_full_NAMA_Machine_d'Anticyth%C3%A8re_1.jpg", "Antikythera Mechanism", "", "", "", "", "Origin: Antikythera, Greece", "1st Century BCE", "2nd Century BCE", "http://isaw.nyu.edu/research/antikythera-mechanism", "Project Leader: Alexander Jones", 2);
+  mechanism = new Pin("Research", "blue", 535, 230, "https://dl.airtable.com/yWJaGWWjQXKpHlBGLsEg_full_NAMA_Machine_d'Anticyth%C3%A8re_1.jpg", "Antikythera Mechanism", "", "", "", "", "Origin: Antikythera, Greece", "1st Century BCE", "2nd Century BCE", "http://i6.cims.nyu.edu/~ef1389/final/vr-final/index.html", "Project Leader: Alexander Jones", 2);
 
 
-  pub = new Pin("Publication", "black", 550, 250, "https://dl.airtable.com/twrJtAlNSJqyk1MRByQ9_full_amheida.jpeg", "Amheida I: Ostraka from Trimithis 1", "Author: Roger Bagnall", "Summary: Catalog and analysis of 455 inscribed ostraka from the NYU excavations at Amheida, Egypt", "", "", "Origin: Dakhleh Oasis, Egypt", "3rd Century AD", "4th Century AD", "http://dlib.nyu.edu/awdl/isaw/amheida-i-otrim-1/", "", 5);
+  pub = new Pin("Publications", "black", 550, 250, "https://dl.airtable.com/twrJtAlNSJqyk1MRByQ9_full_amheida.jpeg", "Amheida I: Ostraka from Trimithis 1", "Author: Roger Bagnall", "Summary: Catalog and analysis of 455 inscribed ostraka from the NYU excavations at Amheida, Egypt", "", "", "Origin: Dakhleh Oasis, Egypt", "3rd Century AD", "4th Century AD", "http://dlib.nyu.edu/awdl/isaw/amheida-i-otrim-1/", "", 5);
 
 
 
@@ -56,62 +65,40 @@ function setup() {
   store.push(mechanism);
   store.push(pub);
 
-  for(let i = 0; i< btns.length; i++){
-    //  console.log(btns[i], btns[i].id);
-      btns[i].addEventListener('click', function(){
-        store.forEach((s) => {
-          let max = 1;
-     //     console.log(typeof(s.category), typeof(btns[i].innerHTML));
-          if(btns[i].innerHTML !== s.category){
-            console.log('hiding');
-            s.show = false;
-          }
-          else{
-            s.show = true;
-            console.log('showing', s.show);
 
-            if(s.age > max){max = s.age};
-            console.log('object id: ' + s.age);
-
-            slide.value = max + '';
-          }
-
-        })
-        console.log('slide value: ' + slide.value);
-      });
-    }
-
-
-
+  // CK - add event listeners for all buttons
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener('click', function(event) {
+      // set a global variable equal to the value of the button
+      // we will use this in 'draw' to figure out which button was
+      // most recently pressed
+      buttonValue = event.currentTarget.innerHTML;
+    });
+  }
 
 }
 
 function draw() {
   image(bckgrnd, 500, 250, 1000, 500);
 
+  // CK
+  // visit each store item and make it visible / invisible based
+  // on which button is pressed
+  for (var i = 0; i < store.length; i++) {
 
-
-  store.forEach((s) =>{
-    if(s.age <= parseInt(slide.value)){
-      s.show = true;
-    }      else{
-       s.show = false;
+    // first handle button info
+    if (buttonValue != 'Show All' && store[i].category !== buttonValue) {
+      store[i].show = false;
     }
-    s.pinActive();
-  });
-
-
-
-
-
-
-
-
-
-
-
-  //test.pinActive();
-
+    // next handle slider info
+    else if (store[i].age <= parseInt(slide.value)){
+      store[i].show = true;
+      store[i].pinActive();
+    }
+    else {
+      store[i].show = false;
+    }
+  }
 }
 
 function mousePressed() {
@@ -141,48 +128,6 @@ function mousePressed() {
 
   if (mouseX > 530 && mouseX < 560 && mouseY > 240 && mouseY < 260) {
     pub.displayInfo();
-  }
-}
-
-class Exhibition {
-  constructor(x, y, imgURL, title, artist, language, dimensions, medium, location, startDateRange, endDateRange, ageId) {
-    this.x = x;
-    this.y = y;
-    this.img = imgURL;
-    this.title = title;
-    this.artist = artist;
-    this.lang = language;
-    this.dims = dimensions;
-    this.medium = medium;
-    this.loc = location;
-    this.start = startDateRange;
-    this.end = endDateRange;
-    this.id = 4;
-    this.show = true;
-    this.category = 'Exhibitions';
-  }
-
-  pinActive() {
-    if(this.show){
-      fill(255, 0, 0);
-      ellipse(this.x, this.y, 15, 15);
-    }
-  }
-
-  displayInfo() {
-    document.getElementById("title").innerHTML = this.title;
-    document.getElementById("image").src = this.img;
-    document.getElementById("artist").innerHTML = this.artist;
-    document.getElementById("dimension").innerHTML = this.dims;
-    document.getElementById("language").innerHTML = this.lang;
-    document.getElementById("medium").innerHTML = this.medium;
-    document.getElementById("origin").innerHTML = this.loc;
-
-    if (this.end === "") {
-      document.getElementById("dates").innerHTML = this.start;
-    } else {
-      document.getElementById("dates").innerHTML = this.start + "-" + this.end;
-    }
   }
 }
 
@@ -245,34 +190,45 @@ class Pin {
 }
 
 
+//UNUSED CLASs
+class Exhibition {
+  constructor(x, y, imgURL, title, artist, language, dimensions, medium, location, startDateRange, endDateRange, ageId) {
+    this.x = x;
+    this.y = y;
+    this.img = imgURL;
+    this.title = title;
+    this.artist = artist;
+    this.lang = language;
+    this.dims = dimensions;
+    this.medium = medium;
+    this.loc = location;
+    this.start = startDateRange;
+    this.end = endDateRange;
+    this.id = 4;
+    this.show = true;
+    this.category = 'Exhibitions';
+  }
 
-/*
-Excavation
-Amheida, Egypt: 0-3 ad
-Kinik Hoyuk, Turkey: 8-9 bc
+  pinActive() {
+    if(this.show){
+      fill(255, 0, 0);
+      ellipse(this.x, this.y, 15, 15);
+    }
+  }
 
-Exhibition
-Alexander the Great: 356-323 bce
-Book on the Shape of the Fixed Stars: 1500 ad
+  displayInfo() {
+    document.getElementById("title").innerHTML = this.title;
+    document.getElementById("image").src = this.img;
+    document.getElementById("artist").innerHTML = this.artist;
+    document.getElementById("dimension").innerHTML = this.dims;
+    document.getElementById("language").innerHTML = this.lang;
+    document.getElementById("medium").innerHTML = this.medium;
+    document.getElementById("origin").innerHTML = this.loc;
 
-Research
-Antikythera: 0-1 BCE
-
-Publications
-Edge of Empires: Pagans, Jews, and Christians at Roman Dura-Europos: 300 BCE
-
-
-
-
-
-
-  <div id = 'buttons'>
-      <button type="button" >Exhibitions</button>
-      <button type="button" >Excavations</button>
-      <button type="button" >Research</button>
-      <button type="button">Publications</button>
-  </div>
-
-
-
-*/
+    if (this.end === "") {
+      document.getElementById("dates").innerHTML = this.start;
+    } else {
+      document.getElementById("dates").innerHTML = this.start + "-" + this.end;
+    }
+  }
+}
