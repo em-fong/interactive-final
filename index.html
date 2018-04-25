@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="p5/p5.min.js"></script>
-    <script src="p5/addons/p5.dom.min.js"></script>
-    <script src="p5/addons/p5.sound.min.js"></script>
-    <script src="sketch.js"></script>
-    <style> body {padding: 0; margin: 0;} </style>
-  </head>
+<head>
+  <script src="../p5/p5.min.js"></script>
+  <script src="../p5/addons/p5.dom.min.js"></script>
+  <script src="../p5/addons/p5.sound.min.js"></script>
+  <script src="sketch.js"></script>
+  <style> body {padding: 0; margin: 0;} </style>
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand|Yanone+Kaffeesatz" rel="stylesheet">
+</head>
   <body>
     <br><br>
+    <h1 id="header" align="center"> ISAW Digital Map </h1>
+    <div align="center">
+      <h5> By Time: </h5>
+        <input type="range" min="0" max="6" value="0" class="slider-square" id="slide">
+    </div>
+    <div align="center" id='buttons'>
+      <h5> By Type: </h5>
+        <button type="button" class="clickBtn" id="exhibitions">Exhibitions</button>
+        <button type="button" class="clickBtn" id="excavations">Excavations</button>
+        <button type="button" class="clickBtn" id="research">Research</button>
+        <button type="button" class="clickBtn" id="publications">Publications</button>
+    </div>
+    <br><br>
     <div align="CENTER" id="sketch"></div>
+    <div class="container" id="content">
+      <h1 id="a"> </h1>
+      <p><a id="link"> </a></p>
+      <p id="b"></p>
+      <p id="c"></p>
+      <p id="d"></p>
+      <p id="e"></p>
+      <p id="f"></p>
+      <p id="g"></p>
+      <p id="h"></p>
+  </div>
+  <div class="container">
+          <img id="image">
+  </div>
   </body>
 </html>

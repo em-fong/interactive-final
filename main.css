@@ -1,0 +1,50 @@
+.container {
+  float: left;
+  width: 49%;
+  text-align: center
+}
+
+#header {
+  font-size: 50px;
+}
+
+#exhibitions {
+  background-color: red;
+}
+
+#excavations {
+  background-color: green;
+}
+
+#research {
+  background-color: blue;
+}
+
+#publications {
+  background-color: black;
+}
+
+.clickBtn {
+  color: white;
+  font-family: "Quicksand", sans-serif;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+body {
+  background-color: #C39C56;
+}
+
+h1, h5 {
+  color: white;
+  font-family: "Quicksand", sans-serif;
+}
+
+p {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+}
+
+image {
+  max-width:80%;
+  max-height:80%;
+}
